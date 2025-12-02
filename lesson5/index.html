@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Mastery</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="nav-bar"></div>
+      
+      <div class="product-display">
+        <div class="product-container">
+          <div class="product-image">
+            <img v-bind:src="image">
+          </div>
+          <div class="product-info">
+            <h1>{{ product }}</h1>
+            <p v-if="inStock">In Stock</p>
+            <p v-else>Out of Stock</p>
+            <ul>
+              <li v-for="detail in details" :key="detail">{{ detail }}</li>
+            </ul>
+
+            <p><strong>Colors: </strong>
+              <span v-for="(variant, index) in variants" :key="variant.id">
+              {{ variant.color }}<span v-if="index < variants.length - 1">, </span>
+              </span>
+            </p>
+
+            <p><strong>Available Sizes: </strong>
+              <span v-for="(size, index) in sizes" :key="size">
+              {{ size }}<span v-if="index < sizes.length - 1">, </span>
+              </span>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import App -->
+    <script src="./main.js"></script>
+
+    <!-- Mount App -->
+    <script>
+      const mountedApp = app.mount('#app')
+    </script>
+  </body>
+</html>
